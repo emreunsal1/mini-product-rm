@@ -8,33 +8,34 @@ interface GetProductParam extends GetProductsParams {
   productId:string
 }
 
-const getProducts = ({ token }:GetProductsParams) => api.get('/product/all', {
+interface LikeProductParams extends GetProductsParams {
+  productId: string
+}
+
+export const getProducts = ({ token }:GetProductsParams) => api.get('/product/all', {
   headers: {
-    Authorization: `Bearer ${token}`,
+    'access-token': token,
   },
 });
 
-const getProduct = ({ token, productId }:GetProductParam) => api.get(`/product/get/${productId}`, {
+export const getProduct = ({ token, productId }:GetProductParam) => api.get(`/product/get/${productId}`, {
   headers: {
-    Authorization: `Bearer ${token}`,
+    'access-token': token,
   },
 });
 
-const like = ({ token }:GetProductsParams) => api.post('/product/like', {
+export const like = ({ token, productId }: LikeProductParams) => api.post('/product/like', {
+  productId,
+}, {
   headers: {
-    Authorization: `Bearer ${token}`,
+    'access-token': token,
   },
 });
 
-const unlike = ({ token }:GetProductsParams) => api.post('/product/unlike', {
+export const unlike = ({ token, productId }: LikeProductParams) => api.post('/product/unlike', {
+  productId,
+}, {
   headers: {
-    Authorization: `Bearer ${token}`,
+    'access-token': token,
   },
 });
-
-export default {
-  getProduct,
-  getProducts,
-  like,
-  unlike,
-};
