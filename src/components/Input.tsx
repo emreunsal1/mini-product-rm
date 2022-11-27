@@ -2,8 +2,8 @@ import React from 'react';
 
 type InputProps = {
 
-  onChange: () => any,
-  value: any,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => any,
+  value?: any,
   placeholder: string,
   type?: 'text' | 'email' | 'password' | 'number',
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 type ButtonProps = {
   children: JSX.Element | string,
-  onClick?: () => any
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => any
 };
 
 function Button({ children, onClick }:ButtonProps) {
