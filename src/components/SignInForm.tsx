@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { useRouter } from 'next/router';
+
 import { login, register } from '../api/client/auth';
 import Button from './Button';
 import CheckBox from './CheckBox';
@@ -22,6 +24,7 @@ interface UserSignIn extends UserBase {
 
 export default function SignInForm() {
   const [selectedIndex, setSelectedIndex] = useState<SelectedIndex>(0);
+  const router = useRouter();
   const userInfo = useRef<UserSignIn>({
     email: '', password: '', name: '', phone: '', surname: '',
   });
@@ -35,6 +38,7 @@ export default function SignInForm() {
         await login({ email, password });
       }
       await register({ email, password, name });
+      router.push('/');
     } catch (error) {
       window.alert(error.response.data.message);
     }
