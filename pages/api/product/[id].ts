@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import { like, unlike } from '../../../src/api/server/product';
+import { getProduct, like, unlike } from '../../../src/api/server/product';
 
 export enum LikeTypes {
   LIKE = 'like',
@@ -7,22 +7,25 @@ export enum LikeTypes {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'PATCH') {
-    res.status(404).send('');
-  }
-
   try {
     const { token } = req.cookies;
     const { id } = req.query;
-    const { type } = req.body;
 
-    if (type === LikeTypes.LIKE) {
-      await like({ token: token as string, productId: id as string });
-    } else {
-      await unlike({ token: token as string, productId: id as string });
+    if (req.method === 'GET') {
+      const repsonse = await getProduct({ token: token as string, productId: id as string });
+      res.send(repsonse.data);
+      return;
     }
-    res.send({ success: true });
+    if (req.method === 'PATCH') {
+      const { type } = req.body;
+      if (type === LikeTypes.LIKE) {
+        await like({ token: token as string, productId: id as string });
+      } else {
+        await unlike({ token: token as string, productId: id as string });
+      }
+      res.send({ success: true });
+    }
   } catch (err) {
-    res.send({ message: 'Get products fail' });
+    res.status(401).send({ message: 'Get products fail' });
   }
 }

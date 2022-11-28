@@ -10,6 +10,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const response = await getProducts({ token });
     res.send(response.data.products);
   } catch (err) {
-    res.send({ message: 'Get products fail' });
+    res.status(401).send({ message: 'Get products fail' });
   }
 }

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { unlike, like } from '../api/client/product';
 import { getAllProducts, Product } from '../store/product';
 import { formatPrice } from '../utils/validation';
@@ -12,6 +13,8 @@ type ProductProps = {
 };
 
 export default function ProductCard({ data }: ProductProps) {
+  const router = useRouter();
+
   const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
   const ERROR_IMAGE = 'https://flowbite.com/docs/images/products/apple-watch.png';
@@ -27,8 +30,12 @@ export default function ProductCard({ data }: ProductProps) {
     setLiked(!liked);
   };
 
+  const onCardClickHandler = () => {
+    router.push(`/product/${data.id}`);
+  };
+
   return (
-    <div className="w-full bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 relative border">
+    <div onClick={onCardClickHandler} className="w-full bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 relative border">
       <div>
         <img className="p-8 rounded-t-lg" src="https://flowbite.com/docs/images/products/apple-watch.png" onError={(e) => { (e.target as any).src = ERROR_IMAGE; }} />
       </div>

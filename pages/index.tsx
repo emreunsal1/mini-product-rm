@@ -5,11 +5,11 @@ import ProductCard from '../src/components/ProductCard';
 
 export default function Home() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
+  const products = useSelector((state) => (state as any).product.products);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
+    dispatch(getAllProducts() as any);
+  }, [dispatch]);
 
   return (
     <div className="#app">
