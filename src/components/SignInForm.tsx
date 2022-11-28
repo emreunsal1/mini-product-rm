@@ -43,8 +43,8 @@ export default function SignInForm() {
   const rememberMe = useRef<boolean>(false);
   const againPassword = useRef<UserSignIn['password']>('');
 
-  const buttonClickHandler = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault();
+  const formSubmitHandler = async (e: any) => {
+    e.preventDefault();
     Storage.set('REMEMBER_ME_ACTIVE', rememberMe.current);
     try {
       const { email, password, name } = userInfo.current;
@@ -89,7 +89,7 @@ export default function SignInForm() {
           selectedIndex={selectedIndex}
           tabs={['Login', 'Register']}
         />
-        <form className="mt-8 space-y-6">
+        <form className="mt-8 space-y-6" onSubmit={formSubmitHandler}>
           <div className=" rounded-md shadow-sm">
             <Input errorMessage={inputErrors.email} placeholder="E-mail" onChange={(event) => inputChangeHandler(event.target.value, 'email')} />
             <Input errorMessage={inputErrors.password} placeholder="Password" type="password" onChange={(event) => { inputChangeHandler(event.target.value, 'password'); }} />
@@ -111,7 +111,7 @@ export default function SignInForm() {
             </CheckBox>
           </div>
           <div>
-            <Button onClick={buttonClickHandler}>
+            <Button>
               Login
             </Button>
           </div>

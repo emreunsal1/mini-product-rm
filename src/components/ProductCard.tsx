@@ -35,7 +35,7 @@ export default function ProductCard({ data }: ProductProps) {
   };
 
   return (
-    <div onClick={onCardClickHandler} className="w-full bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 relative border">
+    <div onClick={onCardClickHandler} className="w-full cursor-pointer bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 relative border">
       <div>
         <img className="p-8 rounded-t-lg" src="https://flowbite.com/docs/images/products/apple-watch.png" onError={(e) => { (e.target as any).src = ERROR_IMAGE; }} />
       </div>
@@ -50,7 +50,7 @@ export default function ProductCard({ data }: ProductProps) {
           </div>
         </div>
       </div>
-      <div onClick={onLikeHandler} className="heart absolute top-4 right-4 bg-stone-300 w-8 h-8 flex items-center justify-center rounded-full">
+      <div onClick={onLikeHandler} className="heart absolute top-4 right-4 bg-stone-300 w-10 h-10 flex items-center justify-center rounded-full">
         <span className="font-light text-md mr-0.5">{data.likes}</span>
         <Heart liked={liked} />
       </div>

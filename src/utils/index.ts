@@ -38,9 +38,18 @@ export const Storage = {
 };
 
 export const detectUserCloseTab = () => {
-  if (typeof window !== 'undefined' && !Storage.get('REMEMBER_ME_ACTIVE')) {
+  if (typeof window !== 'undefined') {
     window.addEventListener('unload', () => {
-      document.cookie = 'token=; Max-Age=0;';
+      if (!Storage.get('REMEMBER_ME_ACTIVE')) {
+        document.cookie = 'token=; Max-Age=0;';
+      }
     });
+  }
+};
+
+export const clearCookieAndRedirect = () => {
+  if (typeof window !== 'undefined') {
+    document.cookie = 'token=; Max-Age=0';
+    window.location.assign('/sign-in');
   }
 };

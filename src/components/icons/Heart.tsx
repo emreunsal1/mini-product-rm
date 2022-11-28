@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Heart({ liked, size = 5 }: { liked: boolean, size?: number }) {
+export default function Heart({ liked, size = 4 }: { liked: boolean, size?: number }) {
   const sizeClassName = `w-${size}`;
   let iconElement;
   if (liked) {
