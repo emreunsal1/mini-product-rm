@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Piton Task
 
-## Getting Started
+Stack:
+- Next.js
+- Tailwind
+- TypeScript
+- Redux
 
-First, run the development server:
+## 📦 Installation
+
+### 📰 Clone the project
 
 ```bash
-npm run dev
-# or
+git clone https://github.com/emreunsal1/piton-task.git
+```
+
+### 🔻 Install Dependencies
+
+With yarn:
+```bash
+cd ./piton-task && yarn
+```
+
+### 🏃‍♂️ Start the project
+
+With yarn:
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Login / Register Page:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- <img width="600" alt="Ekran Resmi 2022-11-28 23 48 01" src="https://user-images.githubusercontent.com/88236238/204377952-cc3998c2-5f2e-4a49-9597-511a66d658d6.png">
+- <img width="600" alt="Ekran Resmi 2022-11-28 23 48 07" src="https://user-images.githubusercontent.com/88236238/204377957-a1d59852-2881-4610-9f64-4908399ff700.png">
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Main Page:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- <img width="600" alt="Ekran Resmi 2022-11-28 23 48 25" src="https://user-images.githubusercontent.com/88236238/204378125-599fe76b-cd9f-45e0-b88b-f8139bc070ed.png">
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Product Detail Page:
 
-## Deploy on Vercel
+- <img width="600" alt="Ekran Resmi 2022-11-28 23 48 34" src="https://user-images.githubusercontent.com/88236238/204378187-140557b7-b4a5-4d5b-b47a-8265373e8f87.png">
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🔴 Demo 
+You can visit the demo from: [Piton-Task-Demo](https://piton-task-neon.vercel.app/)
