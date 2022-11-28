@@ -98,7 +98,7 @@ export default function SignInForm() {
                 <Input errorMessage={inputErrors.againPassword} placeholder="Again PassWord" type="password" onChange={(event) => { againPassword.current = event.target.value; }} />
                 <Input errorMessage={inputErrors.name} placeholder="Name" onChange={(event) => { inputChangeHandler(event.target.value, 'name'); }} />
                 <Input errorMessage={inputErrors.surname} placeholder="Surname" onChange={(event) => { inputChangeHandler(event.target.value, 'surname'); }} />
-                <Input errorMessage={inputErrors.phone} mask="+\90 999 999 99 99" placeholder="Phone Number" onChange={(event) => { inputChangeHandler(event.target.value, 'phone'); }} />
+                <Input errorMessage={inputErrors.phone} mask="+\90(999) 999 99 99" placeholder="Phone Number" onChange={(event) => { inputChangeHandler(event.target.value, 'phone'); }} />
               </>
               )}
 
