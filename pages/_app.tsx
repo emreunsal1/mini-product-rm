@@ -7,7 +7,7 @@ import { detectUserCloseTab } from '../src/utils/validation';
 
 function App({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
-  detectUserCloseTab();
+  detectUserCloseTab(true);
   return (
     <Provider store={store}>
       <Component {...props} />
