@@ -6,7 +6,7 @@ import Button from './Button';
 import CheckBox from './CheckBox';
 import Input from './Input';
 import Tab from './Tab';
-import { checkStringEqual, validateInputs } from '../utils/validation';
+import { checkStringEqual, Storage, validateInputs } from '../utils';
 import { SignInType } from '../enums';
 
 interface UserBase {
@@ -40,10 +40,12 @@ export default function SignInForm() {
   const userInfo = useRef<UserSignIn>({
     email: '', password: '', name: '', phone: '', surname: '',
   });
+  const rememberMe = useRef<boolean>(false);
   const againPassword = useRef<UserSignIn['password']>('');
 
   const buttonClickHandler = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
+    Storage.set('REMEMBER_ME_ACTIVE', rememberMe.current);
     try {
       const { email, password, name } = userInfo.current;
 
@@ -55,7 +57,7 @@ export default function SignInForm() {
         messages.againPassword = 'Password should match';
       }
 
-      if (hasError || !isEqual) {
+      if (hasError || (!isEqual && selectedIndex === SignInType.REGISTER)) {
         setInputErrors({ ...DEFAULT_INPUT_ERRORS, ...messages });
         return;
       }
@@ -89,13 +91,13 @@ export default function SignInForm() {
         />
         <form className="mt-8 space-y-6">
           <div className=" rounded-md shadow-sm">
-            <Input errorMessage={inputErrors.email} placeholder="e-mail giriniz" onChange={(event) => inputChangeHandler(event.target.value, 'email')} />
-            <Input errorMessage={inputErrors.password} placeholder="şifre Giriniz" type="password" onChange={(event) => { inputChangeHandler(event.target.value, 'password'); }} />
+            <Input errorMessage={inputErrors.email} placeholder="E-mail" onChange={(event) => inputChangeHandler(event.target.value, 'email')} />
+            <Input errorMessage={inputErrors.password} placeholder="Password" type="password" onChange={(event) => { inputChangeHandler(event.target.value, 'password'); }} />
 
             {selectedIndex === SignInType.REGISTER
               && (
               <>
-                <Input errorMessage={inputErrors.againPassword} placeholder="Again PassWord" type="password" onChange={(event) => { againPassword.current = event.target.value; }} />
+                <Input errorMessage={inputErrors.againPassword} placeholder="Password again" type="password" onChange={(event) => { againPassword.current = event.target.value; }} />
                 <Input errorMessage={inputErrors.name} placeholder="Name" onChange={(event) => { inputChangeHandler(event.target.value, 'name'); }} />
                 <Input errorMessage={inputErrors.surname} placeholder="Surname" onChange={(event) => { inputChangeHandler(event.target.value, 'surname'); }} />
                 <Input errorMessage={inputErrors.phone} mask="+\90(999) 999 99 99" placeholder="Phone Number" onChange={(event) => { inputChangeHandler(event.target.value, 'phone'); }} />
@@ -104,7 +106,7 @@ export default function SignInForm() {
 
           </div>
           <div className="flex items-center justify-between">
-            <CheckBox value={false} onChange={() => {}}>
+            <CheckBox onChange={(e) => { rememberMe.current = e.target.checked; }}>
               Remember Me
             </CheckBox>
           </div>

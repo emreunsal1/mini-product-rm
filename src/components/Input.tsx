@@ -28,6 +28,7 @@ export default function Input({
     <input
       className={inputClass}
       placeholder={placeholder}
+      autoComplete="chrome-off"
       type={type}
       onChange={onChange}
       value={value}

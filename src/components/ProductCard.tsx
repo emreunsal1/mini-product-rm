@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { unlike, like } from '../api/client/product';
 import { getAllProducts, Product } from '../store/product';
-import { formatPrice } from '../utils/validation';
+import { formatPrice } from '../utils';
 import Heart from './icons/Heart';
 
 type ProductProps = {

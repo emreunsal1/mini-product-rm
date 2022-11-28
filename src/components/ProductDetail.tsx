@@ -2,7 +2,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useState, useEffect } from 'react';
 import { getProduct, like, unlike } from '../api/client/product';
-import { formatPrice } from '../utils/validation';
+import { formatPrice } from '../utils';
 import Heart from './icons/Heart';
 
 export default function ProductDetail({ id }: { id: string }) {

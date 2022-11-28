@@ -9,9 +9,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { email, password } = req.body as any;
     const response = await login({ email, password });
-    res.setHeader('Set-Cookie', serialize('token', response.data.token, { path: '/' }));
+    if (!response.data.token.length) {
+      res.status(400).send({ message: 'Login failed. Please check your email and password.' });
+    }
+    res.setHeader('Set-Cookie', serialize('token', response.data.token, { path: '/', maxAge: 16000 }));
     res.status(200).send({ message: 'Login Successfull' });
   } catch (err) {
-    res.send({ message: 'Login fail' });
+    res.status(400).send({ message: 'Login failed. Please check your email and password.' });
   }
 }

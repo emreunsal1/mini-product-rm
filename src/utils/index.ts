@@ -4,16 +4,6 @@ export const checkStringEqual = (a: string, b: string) => a === b;
 
 export const formatPrice = (price: number | string, currency = 'TL') => `${price} ${currency}`;
 
-export const detectUserCloseTab = (isRememberMeActive = false) => {
-  if (!isRememberMeActive) {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('unload', () => {
-        document.cookie = 'token=; Max-Age=-99999999;';
-      });
-    }
-  }
-};
-
 export const validateEmail = (email: string) => String(email)
   .toLowerCase()
   .match(
@@ -40,4 +30,17 @@ export const validateInputs = (user: any, type:SignInType) => {
     }
   });
   return { messages: errorMessage, hasError: Object.keys(errorMessage).length > 0 };
+};
+
+export const Storage = {
+  get: (key: string) => JSON.parse(localStorage.getItem(key) as string),
+  set: (key: string, value: any) => localStorage.setItem(key, JSON.stringify(value)),
+};
+
+export const detectUserCloseTab = () => {
+  if (typeof window !== 'undefined' && !Storage.get('REMEMBER_ME_ACTIVE')) {
+    window.addEventListener('unload', () => {
+      document.cookie = 'token=; Max-Age=0;';
+    });
+  }
 };
