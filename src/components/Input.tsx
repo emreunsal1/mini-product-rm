@@ -24,7 +24,7 @@ export default function Input({
     inputClass += ' border-gray-300';
   }
 
-  const renderInput = () => (
+  const renderInput = (props?:any) => (
     <input
       className={inputClass}
       placeholder={placeholder}
@@ -32,11 +32,17 @@ export default function Input({
       type={type}
       onChange={onChange}
       value={value}
+      {...props}
     />
   );
 
   const wrapWithMask = () => (
-    <InputMask mask={mask as string} alwaysShowMask onChange={onChange} value={value}>
+    <InputMask
+      mask={mask as string}
+      alwaysShowMask
+      onChange={onChange}
+      value={value}
+    >
       {renderInput as unknown as ReactNode}
     </InputMask>
   );

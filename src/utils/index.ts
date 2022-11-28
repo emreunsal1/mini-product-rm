@@ -22,7 +22,7 @@ export const validateInputs = (user: any, type:SignInType) => {
       errorMessage[key] = 'Password should be 6-20 char and contain only alphanumeric char';
     }
     if (type === SignInType.LOGIN) return;
-    if (key === 'phone' && user[key].length !== 18) {
+    if (key === 'phone' && user[key].includes('_')) {
       errorMessage[key] = 'Phone number is required';
     }
     if ((key === 'name' || key === 'surname') && user[key].length === 0) {
